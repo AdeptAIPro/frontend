@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+  MANAGER
+  HR
+}
+
+model Employee {
+  id        String   @id @default(uuid())
+  name      String
+  position  String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+}
+
+model PayrollHistory {
+  id             String   @id @default(uuid())
+  runDate        DateTime
+  payPeriod      String
+  totalAmount    Float
+  totalEmployees Int
+  status         String
+}
+
+model Talent {
+  id        String   @id @default(uuid())
+  name      String
+  title     String
+  // Add other fields as needed
+}
+
+model Payment {
+  id            String   @id @default(uuid())
+  employeeId    String
+  payStubId     String
+  amount        Float
+  currency      String
+  status        String
+  paymentMethod String
+  bankName      String?
+  routingNumber String?
+  accountNumber String?
+  accountType   String?
+  transactionId String?
+  processedAt   DateTime?
+  createdAt     DateTime @default(now())
+  errorMessage  String?
+} 

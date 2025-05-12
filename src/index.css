@@ -1,0 +1,218 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 270 86% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 270 86% 50%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 270 86% 50%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 270 86% 50%;
+  }
+
+  /* Move dark mode styles to separate class so they're only applied when dark class is present */
+  .dark {
+    --background: 222.2 30% 12%; /* Lightened from 4.9% to 12% */
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 25% 14%; /* Lightened */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 25% 14%; /* Lightened */
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 270 86% 50%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 22%; /* Lightened */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 22%; /* Lightened */
+    --muted-foreground: 215 20.2% 75%; /* Brightened */
+
+    --accent: 217.2 32.6% 22%; /* Lightened */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 22%; /* Lightened */
+    --input: 217.2 32.6% 22%; /* Lightened */
+    --ring: 270 86% 50%;
+    
+    --sidebar-background: 240 15% 16%; /* Lightened from 10% to 16% */
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 270 86% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 10% 22%; /* Lightened */
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 10% 22%; /* Lightened */
+    --sidebar-ring: 270 86% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .glass-morphism {
+    @apply bg-white/70 dark:bg-gray-900/70 backdrop-blur-md border border-white/20 dark:border-gray-800/20 shadow-glass;
+  }
+  
+  .input-glow:focus {
+    @apply ring-2 ring-primary/50 ring-offset-0 transition-all duration-300;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+  
+  .card-gradient {
+    @apply bg-gradient-to-br from-card to-secondary/80 backdrop-blur-sm;
+  }
+  
+  .card-highlight {
+    @apply border-0 shadow-md hover:shadow-lg transition-all duration-300;
+  }
+  
+  .enterprise-card {
+    @apply border-0 bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden;
+  }
+  
+  .enterprise-header {
+    @apply bg-gradient-to-r from-adept to-adept-dark text-white p-4;
+  }
+  
+  .dashboard-stat-card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all p-4;
+  }
+  
+  .grid-dashboard {
+    @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  }
+  
+  .action-button {
+    @apply bg-adept hover:bg-adept-dark text-white transition-colors;
+  }
+}
+
+/* Chart container fix */
+.recharts-wrapper {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.recharts-tooltip-wrapper {
+  z-index: 50 !important;
+}
+
+/* Prevent chart overflow */
+.recharts-responsive-container {
+  overflow: visible !important;
+}
+
+/* Fix chart positioning */
+.recharts-wrapper .recharts-cartesian-grid-horizontal line,
+.recharts-wrapper .recharts-cartesian-grid-vertical line {
+  z-index: 5;
+}
+
+.recharts-wrapper .recharts-layer {
+  z-index: 15;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Elegant scroll bars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Font rendering optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+}
+
+/* Fade-in animation for page transitions */
+.page-transition-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
